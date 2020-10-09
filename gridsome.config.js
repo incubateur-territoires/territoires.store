@@ -6,7 +6,35 @@
 
 module.exports = {
   siteName: 'Territoires Store',
+  transformers: {
+    remark: {
+      externalLinksTarget: '_blank',
+      externalLinksRel: ['nofollow', 'noopener', 'noreferrer'],
+      anchorClassName: 'icon icon-link',
+      plugins: [
+        // ...global plugins
+      ]
+    }
+  },
   plugins: [
+    {
+      use: `gridsome-plugin-netlify-cms`,
+      options: {
+        publicPath: `/admin`
+      }
+    },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        typeName: 'Service',
+        path: './content/services/*.md',
+        remark: {
+          plugins: [
+            // ...local plugins
+          ]
+        }
+      }
+    },
     {
       use: "gridsome-plugin-tailwindcss",
       /**
