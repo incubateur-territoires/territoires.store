@@ -1,8 +1,8 @@
 <template>
-  <div class="px-2 py-1 rounded-sm hover:bg-gray-200 flex items-center">
-    <input class="flex" type="checkbox" :id="service.fileInfo.name" :value="payload" v-model="selectedServices">
+  <div class="service-item">
+    <input class="flex" type="checkbox" :id="service.fileInfo.name" :value="service" v-model="selectedServices">
     <label class="ml-2 font-semibold flex flex-grow" :for="service.fileInfo.name">{{service.action}}</label>
-    <g-link class="flex float-right text-sm border-solid">{{service.service}}</g-link>
+    <g-link class="service-link hidden flex text-sm border-solid text-blue-800" v-if="service.url" :to="service.url">↗︎ Visiter le service</g-link>
   </div>
 </template>
 
@@ -13,12 +13,6 @@ export default {
     value: Array
   },
   computed: {
-    payload() {
-      return {
-        service: this.service.fileInfo.name,
-        contact: this.service.contact
-      }
-    },
     selectedServices: {
       get() { return this.value },
       set(selectedServices) {this.$emit('input', selectedServices)}
@@ -26,3 +20,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.service-item {
+  @apply px-2 py-1 rounded-sm flex items-center;
+
+  &:hover {
+    @apply bg-gray-200;
+
+    .service-link {
+      display: flex;
+    }
+  }
+}
+</style>

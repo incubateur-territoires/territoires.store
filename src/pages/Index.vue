@@ -10,83 +10,111 @@
       <h1 class="text-5xl font-bold text-gray-900">📖 Territoires Store</h1>
       <h2 class="text-gray-800">Le catalogue des services publics numériques</h2>
     </header>
- 
-    <div class="max-w-screen-md m-auto mt-8 text-gray-800">
-      Vous pouvez sélectionner les services qui vous intéressent, être recontacté et recevoir des informations complémentaires pour les déployer sur votre territoire.
+
+    <div v-if="step === 'selection'">
+      <div class="max-w-screen-md m-auto mt-8 text-gray-800">
+        Vous pouvez sélectionner les services qui vous intéressent, être recontacté et recevoir des informations complémentaires pour les déployer sur votre territoire.
+      </div>
+
+      <div class="max-w-screen-md m-auto mt-8 text-gray-800">
+        <ServicesParThematique 
+          thematique="Mobilité"
+          :services="$page.mobilite"
+          v-model="selectedServices"
+        />
+        <ServicesParThematique 
+          thematique="Déchets"
+          :services="$page.dechets"
+          v-model="selectedServices"
+        />
+        <ServicesParThematique 
+          thematique="Logement"
+          :services="$page.logement"
+          v-model="selectedServices"
+        />
+        <ServicesParThematique 
+          thematique="Démarches administratives"
+          :services="$page.demarchesAdministratives" 
+          v-model="selectedServices"
+        />
+        <ServicesParThematique 
+          thematique="Aides pour collectivités"
+          :services="$page.aidePourCollectivites"
+          v-model="selectedServices"
+        />
+        <ServicesParThematique 
+          thematique="Accessibilité"
+          :services="$page.accessibilite"
+          v-model="selectedServices"
+        />
+        <ServicesParThematique 
+          thematique="Emploi et Entreprise"
+          :services="$page.emploiEtEntreprise"
+          v-model="selectedServices"
+        />
+        <ServicesParThematique 
+          thematique="Données"
+          :services="$page.donnees"
+          v-model="selectedServices"
+        />
+        <ServicesParThematique 
+          thematique="Urbanisme"
+          :services="$page.urbanisme"
+          v-model="selectedServices"
+        />
+        <ServicesParThematique 
+          thematique="Solidarité"
+          :services="$page.solidarite"
+          v-model="selectedServices"
+        />
+        <ServicesParThematique 
+          thematique="Agriculture"
+          :services="$page.agriculture"
+          v-model="selectedServices"
+        />
+
+        <div>
+          Vous avez besoin d'un autre service public numérique ?
+          Nous pouvons le construire ensemble !
+        </div>
+      </div>
+
+      <div class="max-w-screen-md m-auto mt-8 text-gray-800">
+        <button 
+          class="inline-block py-2 px-4 bg-blue-500 text-white font-semibold rounded-md cursor-pointer hover:bg-blue-800"
+          v-on:click="step = 'form'"
+        >
+          Être recontacté ➔
+        </button>
+      </div>
     </div>
 
-    <div class="max-w-screen-md m-auto mt-8 text-gray-800">
-      <ServicesParThematique 
-        thematique="Mobilité"
-        :services="$page.mobilite"
-        v-model="selectedServices"
-      />
-      <ServicesParThematique 
-        thematique="Déchets"
-        :services="$page.dechets"
-        v-model="selectedServices"
-      />
-      <ServicesParThematique 
-        thematique="Logement"
-        :services="$page.logement"
-        v-model="selectedServices"
-      />
-      <ServicesParThematique 
-        thematique="Démarches administratives"
-        :services="$page.demarchesAdministratives" 
-        v-model="selectedServices"
-      />
-      <ServicesParThematique 
-        thematique="Aides pour collectivités"
-        :services="$page.aidePourCollectivites"
-        v-model="selectedServices"
-      />
-      <ServicesParThematique 
-        thematique="Accessibilité"
-        :services="$page.accessibilite"
-        v-model="selectedServices"
-      />
-      <ServicesParThematique 
-        thematique="Emploi et Entreprise"
-        :services="$page.emploiEtEntreprise"
-        v-model="selectedServices"
-      />
-      <ServicesParThematique 
-        thematique="Données"
-        :services="$page.donnees"
-        v-model="selectedServices"
-      />
-      <ServicesParThematique 
-        thematique="Urbanisme"
-        :services="$page.urbanisme"
-        v-model="selectedServices"
-      />
-      <ServicesParThematique 
-        thematique="Solidarité"
-        :services="$page.solidarite"
-        v-model="selectedServices"
-      />
-      <ServicesParThematique 
-        thematique="Agriculture"
-        :services="$page.agriculture"
-        v-model="selectedServices"
-      />
-    </div>
+    <ConfirmationForm
+      class="max-w-screen-md m-auto mt-8 text-gray-800"
+      v-if="step === 'form'"
+      :selectedServices="selectedServices"
+    />
+
+    <footer class="bg-gray-200 mt-12" style="height:100px">
+    </footer>
   </Layout>
 </template>
 
 <script>
 import ServicesParThematique from '~/components/ServicesParThematique';
+import ConfirmationForm from '~/components/ConfirmationForm.vue'
 
 export default {
   metaInfo: {
     title: '📖 Territoires Store'
   },
   components: {
-    ServicesParThematique
+    ServicesParThematique,
+    ConfirmationForm
   },
   data() {
     return {
+      step: "selection",
       selectedServices: []
     }
   }

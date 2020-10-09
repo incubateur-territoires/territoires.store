@@ -1,0 +1,12 @@
+{
+  "name": "store-request",
+  "version": "1.0.0",
+  "description": "",
+  "main": "store-request.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "airtable": "^0.10.0",
+    "node-mailjet": "^3.3.1"
+  }
+}
