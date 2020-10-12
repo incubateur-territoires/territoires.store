@@ -2,7 +2,7 @@
 service: Administration+
 contact: zohra.lebel@beta.gouv.fr
 url: https://aplus.beta.gouv.fr/
-action: Débloquer une situation administrative
+action: Résoudre les urgences ou blocages administratifs complexes
 thematique:
   - Démarches administratives
 ---
