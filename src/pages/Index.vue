@@ -76,7 +76,7 @@
           <div class="flex items-center px-4 py-2 rounded-md hover:bg-gray-200">
             <input class="flex h-6 w-6" type="checkbox" id="investigation" v-model="selectedInvestigation">
             <label class="ml-4 flex i font-semibold text-lg" for="investigation">
-              Incrivez-vous au Programme Investigation de l'Incubateur des Territoires
+              Renseignez-vous sur le Programme Investigation de l'Incubateur des Territoires
             </label>
           </div>
 
