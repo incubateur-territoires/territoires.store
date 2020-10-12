@@ -6,13 +6,13 @@
 
     <FormulateForm
       v-model="contact"
+      class="my-8"
     >
       <FormulateInput
         type="text"
         name="nom"
         label="Prénom et nom"
         validation="required"
-        error-behavior="live"
       />
 
       <FormulateInput

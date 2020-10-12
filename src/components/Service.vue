@@ -1,8 +1,8 @@
 <template>
   <div class="service-item">
     <input class="flex" type="checkbox" :id="service.fileInfo.name" :value="service" v-model="selectedServices">
-    <label class="ml-2 font-semibold flex flex-grow" :for="service.fileInfo.name">{{service.action}}</label>
-    <g-link class="service-link hidden flex text-sm border-solid text-blue-800" v-if="service.url" :to="service.url">↗︎ Visiter le service</g-link>
+    <label class="ml-2 font-medium flex flex-grow" :for="service.fileInfo.name">{{service.action}}</label>
+    <g-link class="service-link hidden flex text-sm border-solid text-blue-800" v-if="service.url" :to="service.url">↗︎ Decouvrir le service</g-link>
   </div>
 </template>
 

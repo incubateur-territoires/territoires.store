@@ -3,12 +3,23 @@
 
 import DefaultLayout from '~/layouts/Default.vue'
 import VueFormulate from '@braid/vue-formulate'
+import { fr } from '@braid/vue-formulate-i18n'
 
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
 
-  Vue.use(VueFormulate)
+  Vue.use(VueFormulate, {
+    plugins: [ fr ],
+    locale: 'fr',
+    classes: {
+      outer: 'mb-4',
+      input: 'border border-gray-400 rounded px-3 py-2 leading-none focus:border-blue-500 outline-none border-box w-full mb-1',
+      label: 'font-medium text-sm',
+      help: 'text-xs mb-1 text-gray-600',
+      error: 'text-red-700 text-xs mb-1'
+    }
+  })
 
   // Set Head
   head.htmlAttrs = { lang: 'fr' }
