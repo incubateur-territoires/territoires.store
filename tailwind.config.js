@@ -1,6 +1,8 @@
 module.exports = {
   purge: [
-    './src/**/*.vue'
+    './src/**/*.html',
+    './src/**/*.vue',
+    './src/**/*.js'
   ],
   variants: {
     backgroundColor: ['hover']
