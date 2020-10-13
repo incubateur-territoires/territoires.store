@@ -2,7 +2,7 @@
 service: Trackdéchet
 contact: judith@trackdechets.beta.gouv.fr
 url: https://trackdechets.beta.gouv.fr
-action: Tracer des déchets dangereux
+action: Suivre les déchets dangereux
 thematique:
   - Déchets
 ---
