@@ -21,6 +21,8 @@ export default function (Vue, { router, head, isClient }) {
     }
   })
 
+  let ROOT_PATH = 'https://territoires.store'
+
   // Set Head
   head.htmlAttrs = { lang: 'fr' }
   const socialMediaMeta = [
