@@ -2,7 +2,7 @@
 service: Poubelles battle
 contact: jennifer.stephan@beta.gouv.fr,charlotte.poursuibes@icloud.com
 url: https://poubellesbattle.fr/
-action: Composter entre voisins
+action: Faciliter le compostage entre voisins
 thematique:
   - Déchets
 ---
