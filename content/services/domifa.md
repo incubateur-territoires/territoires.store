@@ -2,7 +2,8 @@
 service: DomiFa
 contact: "contact.domifa@fabrique.social.gouv.fr "
 url: https://domifa.fabrique.social.gouv.fr/
-action: Gérer la domiciliation des personnes sans domicile stable
+action: Faciliter l'accès aux droits pour les personnes sans domicile stable, en
+  simplifiant la gestion de la domiciliation
 thematique:
   - Solidarité
 ---
