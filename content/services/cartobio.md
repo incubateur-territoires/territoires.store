@@ -2,7 +2,7 @@
 service: CartoBio
 contact: cartobio@beta.gouv.fr
 url: https://cartobio.org/
-action: Connaitre les parcelles cultivées en bio
+action: Faire connaitre les parcelles cultivées en bio
 thematique:
   - Agriculture
 ---
