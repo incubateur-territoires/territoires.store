@@ -1,20 +1,6 @@
 exports.handler = async (event, context, callback) => {
   const request = JSON.parse(event.body)
 
-  // At row to Airtable
-  const Airtable = require('airtable')
-  const base = new Airtable({apiKey: process.env.AIRTABLE_KEY}).base(process.env.AIRTABLE_BASE)
-
-  const airtableResponse = await base('Territoires Store').create({
-      "Nom": request.contact.nom,
-      "Email": request.contact.email,
-      "Telephone": request.contact.tel,
-      "Services": request.services.map(s => s.service),
-      "Investigation": request.investigation
-    }, 
-    {typecast: true}
-  );
-
   // Send emails
   const SibApiV3Sdk = require('sib-api-v3-sdk');
   const sibClient = SibApiV3Sdk.ApiClient.instance;
@@ -62,6 +48,20 @@ exports.handler = async (event, context, callback) => {
     };
     const bizDevEmailResponse = await sibApiInstance.sendTransacEmail(bizDevEmail);
   }
+
+  // At row to Airtable
+  const Airtable = require('airtable')
+  const base = new Airtable({apiKey: process.env.AIRTABLE_KEY}).base(process.env.AIRTABLE_BASE)
+
+  const airtableResponse = await base('⚠️ Territoires Store').create({
+      "Nom": request.contact.nom,
+      "Email": request.contact.email,
+      "Telephone": request.contact.tel,
+      "Services": request.services.map(s => s.service),
+      "Investigation": request.investigation
+    }, 
+    {typecast: true}
+  );
 
   // Wrap up
   callback(null, {
