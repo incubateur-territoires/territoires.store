@@ -53,7 +53,7 @@ exports.handler = async (event, context, callback) => {
   const Airtable = require('airtable')
   const base = new Airtable({apiKey: process.env.AIRTABLE_KEY}).base(process.env.AIRTABLE_BASE)
 
-  const airtableResponse = await base('⚠️ Territoires Store').create({
+  const airtableResponse = await base('[Territoires Store]').create({
       "Nom": request.contact.nom,
       "Email": request.contact.email,
       "Telephone": request.contact.tel,
