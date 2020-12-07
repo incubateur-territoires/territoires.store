@@ -53,6 +53,7 @@ exports.handler = async (event, context, callback) => {
   const confirmationEmailResponse = await sibApiInstance.sendTransacEmail(confirmationEmail);
 
   // At row to Airtable
+  const abort = require('abort-controller')
   const Airtable = require('airtable')
   const base = new Airtable({apiKey: process.env.AIRTABLE_KEY}).base(process.env.AIRTABLE_BASE)
 
