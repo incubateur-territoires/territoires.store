@@ -11,6 +11,36 @@ exports.handler = async (event, context, callback) => {
 
   const sibApiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
+  // Send incubateur  email
+  let incubateurEmail = new SibApiV3Sdk.SendSmtpEmail(); 
+  incubateurEmail = {
+    to: process.env.EMAIL_INVESTIGATIONS.split(',').map((email) => { return {email} }),
+    templateId: 2,
+    params: {
+      nom: request.contact.nom,
+      email: request.contact.email,
+      tel: request.contact.tel,
+      services: request.services,
+      investigation: request.investigation
+    }
+  };
+  const incubateurEmailResponse = await sibApiInstance.sendTransacEmail(incubateurEmail);
+  
+  // Send emails to biz devs
+  // if (request.services.length > 0) {
+  //   let bizDevEmail = new SibApiV3Sdk.SendSmtpEmail(); 
+  //   bizDevEmail = {
+  //     to: process.env.EMAIL_INVESTIGATIONS.split(',').map((email) => { return {email} }),
+  //     templateId: 3,
+  //     params: {
+  //       services: request.services,
+  //       nom: request.contact.nom,
+  //       email: request.contact.email
+  //     }
+  //   };
+  //   const bizDevEmailResponse = await sibApiInstance.sendTransacEmail(bizDevEmail);
+  // }
+  
   // Send confirmation email
   let confirmationEmail = new SibApiV3Sdk.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
   confirmationEmail = {
@@ -21,33 +51,6 @@ exports.handler = async (event, context, callback) => {
     templateId: 1
   };
   const confirmationEmailResponse = await sibApiInstance.sendTransacEmail(confirmationEmail);
-
-  // Send investigation email
-  if (request.investigation) {
-    let investigationEmail = new SibApiV3Sdk.SendSmtpEmail(); 
-    investigationEmail = {
-      to: process.env.EMAIL_INVESTIGATIONS.split(',').map((email) => { return {email} }),
-      templateId: 2,
-      params: {
-        nom: request.contact.nom,
-        email: request.contact.email
-      }
-    };
-    const investigationEmailResponse = await sibApiInstance.sendTransacEmail(investigationEmail);
-  }
-  
-  // Send biz dev email
-  if (request.services.length > 0) {
-    let bizDevEmail = new SibApiV3Sdk.SendSmtpEmail(); 
-    bizDevEmail = {
-      to: process.env.EMAIL_INVESTIGATIONS.split(',').map((email) => { return {email} }),
-      templateId: 3,
-      params: {
-        services: request.services,
-      }
-    };
-    const bizDevEmailResponse = await sibApiInstance.sendTransacEmail(bizDevEmail);
-  }
 
   // At row to Airtable
   const Airtable = require('airtable')
