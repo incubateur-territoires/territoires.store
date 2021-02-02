@@ -1,8 +1,8 @@
 <template>
   <div class="service-item">
-    <input class="flex" type="checkbox" :id="service.fileInfo.name" :value="service" v-model="selectedServices">
-    <label class="ml-2 font-medium flex flex-grow" :for="service.fileInfo.name">{{service.action}}</label>
-    <g-link class="service-link hidden flex text-sm border-solid text-blue-800" v-if="service.url" :to="service.url">↗︎ Decouvrir le service</g-link>
+    <input class="flex flex-grow-0 w-4" type="checkbox" :id="service.fileInfo.name" :value="service" v-model="selectedServices">
+    <label class="flex flex-grow-0 ml-2 w-3/4 font-medium" :for="service.fileInfo.name">{{service.action}}</label>
+    <g-link class="service-link hidden text-sm text-blue-800" v-if="service.url" :to="service.url">↗︎ Decouvrir le service</g-link>
   </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
     @apply bg-gray-200;
 
     .service-link {
-      display: flex;
+      display: inline-block;
     }
   }
 }

@@ -27,30 +27,35 @@ exports.handler = async (event, context, callback) => {
   const incubateurEmailResponse = await sibApiInstance.sendTransacEmail(incubateurEmail);
   
   // Send emails to biz devs
-  // if (request.services.length > 0) {
-  //   let bizDevEmail = new SibApiV3Sdk.SendSmtpEmail(); 
-  //   bizDevEmail = {
-  //     to: process.env.EMAIL_INVESTIGATIONS.split(',').map((email) => { return {email} }),
-  //     templateId: 3,
-  //     params: {
-  //       services: request.services,
-  //       nom: request.contact.nom,
-  //       email: request.contact.email
-  //     }
-  //   };
-  //   const bizDevEmailResponse = await sibApiInstance.sendTransacEmail(bizDevEmail);
-  // }
+  if (request.services.length > 0) {
+    let bizDevEmail = new SibApiV3Sdk.SendSmtpEmail(); 
+    request.services.forEach(async service => {
+      bizDevEmail = {
+        to: request.contact.email.split(',').map((email) => { return {email} }),
+        replyTo: service.contact.split(',').map((email) => { return {email} })[0],
+        cc: service.contact.split(',').map((email) => { return {email} }),
+        subject: `[Territoires Store] ${service.service}`,
+        templateId: 3,
+        params: {
+          contact: request.contact,
+          service: service.service
+        }
+      };
+
+      await sibApiInstance.sendTransacEmail(bizDevEmail);
+    });
+  }
   
   // Send confirmation email
-  let confirmationEmail = new SibApiV3Sdk.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
-  confirmationEmail = {
-    to: [{
-      email: request.contact.email,
-      name: request.contact.nom
-    }],
-    templateId: 1
-  };
-  const confirmationEmailResponse = await sibApiInstance.sendTransacEmail(confirmationEmail);
+  // let confirmationEmail = new SibApiV3Sdk.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
+  // confirmationEmail = {
+  //   to: [{
+  //     email: request.contact.email,
+  //     name: request.contact.nom
+  //   }],
+  //   templateId: 1
+  // };
+  // const confirmationEmailResponse = await sibApiInstance.sendTransacEmail(confirmationEmail);
 
   // At row to Airtable
   const Airtable = require('airtable')
