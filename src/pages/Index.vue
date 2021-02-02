@@ -65,18 +65,15 @@
       <div class="my-12 p-4 rounded-md border-4 border-green-400">
         <div class="flex flex-col">
           <div class="flex mb-4 font-semibold">
-            Vous avez besoin d'un service public numérique qui n'existe pas encore ?<br>
-            Nous pouvons le construire ensemble !
+            Vous êtes en zone rurale, de montagne, en quartier prioritaire de la politique de la ville, en coeur de ville ou une “Petite Ville de Demain” ?
           </div>
-          <div class="flex mb-4">
-            L’Incubateur des Territoires propose d’accompagner votre collectivité
-            dans un programme d’intrapreneuriat au sein de vos services avec l’ambition de faire émerger des services
-            numériques à fort impact pour vos administrés et votre administration.
+          <div class="mb-4">
+            Découvrir le <g-link class="text-blue-800 border-b-2 border-transparent hover:border-blue-800 font-semibold" to="https://incubateur.anct.gouv.fr/relance/investigations/">Programme National d'Investigations</g-link> jusqu’au <span class="font-bold">15 mars 2021</span> pour bénéficier de l’accompagnement d’experts du numérique et de designers sur des problématiques rencontrées par vos agents au contact des usagers.
           </div>
           <div class="flex items-center px-4 py-2 rounded-md hover:bg-gray-200">
             <input class="flex h-6 w-6" type="checkbox" id="investigation" v-model="selectedInvestigation">
             <label class="ml-4 flex i font-semibold text-lg" for="investigation">
-              Renseignez-vous sur le Programme Investigation de l'Incubateur des Territoires
+              Etre recontacté au sujet du programme national d’investigations
             </label>
           </div>
 
@@ -91,8 +88,38 @@
       >
         <FormulateInput
           type="text"
+          name="collectivite"
+          label="Collectivité"
+          validation="required"
+        />
+
+        <FormulateInput
+          name="civilite"
+          :options="{M: 'M', Mme: 'Mme'}"
+          type="select"
+          placeholder="Civilité"
+          validation="required"
+        />
+
+        <FormulateInput
+          type="text"
           name="nom"
-          label="Prénom et nom"
+          label="Nom"
+          validation="required"
+        />
+
+        <FormulateInput
+          type="text"
+          name="prenom"
+          label="Prénom"
+          validation="required"
+        />
+
+        <FormulateInput
+          name="fonction"
+          :options="{élu: 'Élu', dgs: 'DGS/DGA', agent: 'Agent public', autre: 'Autre'}"
+          type="select"
+          placeholder="Votre fonction"
           validation="required"
         />
 
