@@ -20,6 +20,7 @@ exports.handler = async (event, context, callback) => {
       nom: request.contact.nom,
       email: request.contact.email,
       tel: request.contact.tel,
+      contact: request.contact,
       services: request.services,
       investigation: request.investigation
     }
@@ -28,8 +29,9 @@ exports.handler = async (event, context, callback) => {
   
   // Send emails to biz devs
   if (request.services.length > 0) {
-    let bizDevEmail = new SibApiV3Sdk.SendSmtpEmail(); 
-    request.services.forEach(async service => {
+    request.services.forEach(service => {
+      var bizDevEmail = new SibApiV3Sdk.SendSmtpEmail(); 
+      
       bizDevEmail = {
         to: request.contact.email.split(',').map((email) => { return {email} }),
         replyTo: service.contact.split(',').map((email) => { return {email} })[0],
@@ -42,7 +44,7 @@ exports.handler = async (event, context, callback) => {
         }
       };
 
-      await sibApiInstance.sendTransacEmail(bizDevEmail);
+      sibApiInstance.sendTransacEmail(bizDevEmail);
     });
   }
   
@@ -58,18 +60,18 @@ exports.handler = async (event, context, callback) => {
   // const confirmationEmailResponse = await sibApiInstance.sendTransacEmail(confirmationEmail);
 
   // At row to Airtable
-  const Airtable = require('airtable')
-  const base = new Airtable({apiKey: process.env.AIRTABLE_KEY}).base(process.env.AIRTABLE_BASE)
+  // const Airtable = require('airtable')
+  // const base = new Airtable({apiKey: process.env.AIRTABLE_KEY}).base(process.env.AIRTABLE_BASE)
 
-  const airtableResponse = await base('[Territoires Store]').create({
-      "Nom": request.contact.nom,
-      "Email": request.contact.email,
-      "Telephone": request.contact.tel,
-      "Services": request.services.map(s => s.service),
-      "Investigation": request.investigation
-    }, 
-    {typecast: true}
-  );
+  // const airtableResponse = await base('[Territoires Store]').create({
+  //     "Nom": request.contact.nom,
+  //     "Email": request.contact.email,
+  //     "Telephone": request.contact.tel,
+  //     "Services": request.services.map(s => s.service),
+  //     "Investigation": request.investigation
+  //   }, 
+  //   {typecast: true}
+  // );
 
   // Wrap up
   callback(null, {
