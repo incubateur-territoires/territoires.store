@@ -4,6 +4,9 @@
 import DefaultLayout from '~/layouts/Default.vue'
 import VueFormulate from '@braid/vue-formulate'
 import { fr } from '@braid/vue-formulate-i18n'
+import LogRocket from 'logrocket';
+
+LogRocket.init('xz8jmz/territoires-store');
 
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
