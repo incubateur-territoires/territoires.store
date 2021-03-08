@@ -187,6 +187,12 @@ export default {
         services: this.selectedServices
       })
       .then(function (response) {
+        window._paq.push(['trackEvent', 'Form Events', 'Demandé par', this.contact.fonction])
+
+        this.selectedServices.forEach(service => {
+          window._paq.push(['trackEvent', 'Form Events', 'Renseignements demandés', service.value])
+        });
+        
         console.log(response);
       })
       .catch(function (error) {
