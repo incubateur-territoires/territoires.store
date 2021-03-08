@@ -6,6 +6,7 @@
 
 module.exports = {
   siteName: 'Territoires Store',
+  siteUrl: 'https://territoires.store',
   transformers: {
     remark: {
       externalLinksTarget: '_blank',
