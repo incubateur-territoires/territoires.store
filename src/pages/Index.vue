@@ -61,24 +61,6 @@
         :services="$page.agriculture"
         v-model="selectedServices"
       />
-
-      <div class="my-12 p-4 rounded-md border-4 border-green-400">
-        <div class="flex flex-col">
-          <div class="flex mb-4 font-semibold">
-            Vous êtes en zone rurale, de montagne, en quartier prioritaire de la politique de la ville, en coeur de ville ou une “Petite Ville de Demain” ?
-          </div>
-          <div class="mb-4">
-            Découvrir le <g-link class="text-blue-800 border-b-2 border-transparent hover:border-blue-800 font-semibold" to="https://incubateur.anct.gouv.fr/relance/investigations/">Programme National d'Investigations</g-link> jusqu’au <span class="font-bold">15 mars 2021</span> pour bénéficier de l’accompagnement d’experts du numérique et de designers sur des problématiques rencontrées par vos agents au contact des usagers.
-          </div>
-          <div class="flex items-center px-4 py-2 rounded-md hover:bg-gray-200">
-            <input class="flex h-6 w-6" type="checkbox" id="investigation" v-model="selectedInvestigation">
-            <label class="ml-4 flex i font-semibold text-lg" for="investigation">
-              Etre recontacté au sujet du programme national d’investigations
-            </label>
-          </div>
-
-        </div>
-      </div>
     </div>
 
     <div class="max-w-screen-md rounded-md m-auto my-8 bg-gray-200">
@@ -181,7 +163,7 @@ export default {
   },
   methods: {
     submit: function (event) {
-      axios.post('/.netlify/functions/store-request', {
+      axios.post('https://api.territoires.store/store-request', {
         contact: this.contact,
         investigation: this.selectedInvestigation,
         services: this.selectedServices

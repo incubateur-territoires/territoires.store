@@ -2,9 +2,14 @@
   "name": "territoires.store",
   "private": true,
   "scripts": {
+    "start": "",
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "explore": "gridsome explore"
+    "explore": "gridsome explore",
+    "predeploy": "yarn build"
+  },
+  "engines": {
+    "node": "^14.17.0"
   },
   "dependencies": {
     "@braid/vue-formulate": "^2.4.5",
