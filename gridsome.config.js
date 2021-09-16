@@ -26,12 +26,6 @@ module.exports = {
       }
     },
     {
-      use: `gridsome-plugin-netlify-cms`,
-      options: {
-        publicPath: `/admin`
-      }
-    },
-    {
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'Service',

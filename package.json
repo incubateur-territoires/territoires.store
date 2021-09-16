@@ -2,9 +2,14 @@
   "name": "territoires.store",
   "private": true,
   "scripts": {
+    "start": "",
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "explore": "gridsome explore"
+    "explore": "gridsome explore",
+    "predeploy": "yarn build"
+  },
+  "engines": {
+    "node": "^14.17.0"
   },
   "dependencies": {
     "@braid/vue-formulate": "^2.4.5",
@@ -13,9 +18,7 @@
     "axios": "^0.20.0",
     "gridsome": "^0.7.0",
     "gridsome-plugin-matomo": "^0.1.0",
-    "gridsome-plugin-netlify-cms": "^1.0.9",
-    "logrocket": "^1.0.14",
-    "netlify-cms": "^2.10.61"
+    "logrocket": "^1.0.14"
   },
   "devDependencies": {
     "gridsome-plugin-tailwindcss": "^3.0.1",
